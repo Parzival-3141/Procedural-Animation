@@ -19,9 +19,9 @@ namespace Rosen
         private Rigidbody rb;
         private Vector3 lastHorzVel;
 
-        private void Awake()
+        private void OnValidate()
         {
-            rb = GetComponent<Rigidbody>();
+            gameObject.GetComponent(ref rb);
         }
 
         private void Update()
@@ -34,8 +34,10 @@ namespace Rosen
         {
             var moveDir = GetMoveDirection();
 
+            float speed = Input.GetKey(KeyCode.LeftShift) ? maxSpeed * 0.25f : maxSpeed;
+
             var decel = -deceleration * HorizontalVelocity();
-            var moveSpeed = (maxSpeed - HorizontalVelocity().magnitude) * acceleration + decel.magnitude; //  cancel out deceleration while moving
+            var moveSpeed = (speed - HorizontalVelocity().magnitude) * acceleration + decel.magnitude; //  cancel out deceleration while moving
 
             rb.AddForce(moveDir * moveSpeed, ForceMode.Acceleration);
             rb.AddForce(decel, ForceMode.Acceleration);

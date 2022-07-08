@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fd5420210bfb774b98e7b05abb01c91, type: 3}
+  m_Name: Mannequin_Walk_Reach
+  m_EditorClassIdentifier: 
+  normalClip: {fileID: 8053095032437114139, guid: c50600a57f278e64ca7984395a0639f4, type: 3}
+  mirroredClip: {fileID: -176279001232075424, guid: c50600a57f278e64ca7984395a0639f4, type: 3}

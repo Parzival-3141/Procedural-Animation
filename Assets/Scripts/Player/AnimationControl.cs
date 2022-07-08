@@ -1,4 +1,5 @@
 using UnityEngine;
+using Animancer;
 using Utils;
 
 namespace Rosen
@@ -13,7 +14,22 @@ namespace Rosen
         public float velocityTurnMaxDelta = 4f;
         public float accelTiltMult = 2f;
         public float accelTiltSpeed = 2f;
-    
+
+        [Header("Movement Animation")]
+        public SurveyorWheel wheel;
+        public AnimancerComponent animancer;
+        public AnimationClip idle;
+        public MirroredClip runReach, runPass;
+        public MirroredClip walkReach, walkPass;
+
+        public float runStrideLength = 2.1f;    
+        public float walkStrideLength = 0.7f;
+
+
+        private Vector3 lastPos;
+        private float groundCovered = 0f;
+        private bool stepRight = false;
+        private bool betweenStep = false;
 
         private void Update()
         {
@@ -28,6 +44,38 @@ namespace Rosen
 
             FaceVelocity(horizontalVelocity);
             AccelerationTilt(horizontalAccel, accelRotAxis);
+
+            //  Step Animation Control
+            var distMoved = transform.position - lastPos;
+            distMoved.y = 0f;
+            groundCovered += distMoved.magnitude;
+
+            var b = horizontalVelocity.magnitude >= pMovement.maxSpeed * .5f;
+            var strideLength = b ? runStrideLength : walkStrideLength;
+            var reach = b ? runReach : walkReach;
+            var pass = b ? runPass : walkPass;
+
+            if(groundCovered >= strideLength / 2f)
+            {
+                if (betweenStep)
+                {
+                    animancer.Play(reach.GetClip(stepRight));
+                    betweenStep = false;
+                }
+                else
+                {
+                    animancer.Play(pass.GetClip(stepRight));
+                    betweenStep = true;
+                    stepRight = !stepRight;
+                }
+
+                groundCovered = 0f;
+            }
+
+            wheel.StrideLength = strideLength;
+            wheel.Rotate(wheel.AngleFromDistanceTravelled(distMoved.magnitude));
+
+            lastPos = transform.position;
         }
 
         public Vector3 GetFacing()
