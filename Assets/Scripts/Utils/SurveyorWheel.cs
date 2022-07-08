@@ -16,17 +16,13 @@ public class SurveyorWheel : MonoBehaviour
     public float Circumference => StrideLength * 2f;
     public float Radius => Circumference / (Mathf.PI * 2f);
 
-    public Transform wheelCenter;
+    [SerializeField] private Transform wheelCenter;
 
     public void Rotate(float angle)
     {
-        //    var locRot = wheelCenter.localRotation.eulerAngles;
-        //    locRot.x += angle;
-        //    wheelCenter.localRotation = Quaternion.Euler(locRot);
-
+#pragma warning disable CS0618 // Type or member is obsolete
         wheelCenter.RotateAround(wheelCenter.right, angle * Mathf.Deg2Rad / 2f);
-
-        //wheelCenter.Rotate(wheelCenter.right, angle);
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 
     public float DistanceTravelled(float angle)
@@ -58,7 +54,6 @@ public class SurveyorWheel : MonoBehaviour
 
         DrawOrthoLine(wheelCenter.up);
         DrawOrthoLine(wheelCenter.forward);
-
 
         var diagUpRight   = (wheelCenter.up  + wheelCenter.forward).normalized;
         var diagUpLeft    = (wheelCenter.up  - wheelCenter.forward).normalized;

@@ -76,6 +76,11 @@ namespace Rosen
             wheel.Rotate(wheel.AngleFromDistanceTravelled(distMoved.magnitude));
 
             lastPos = transform.position;
+
+            DevGUI.Label($"Stride Length: {strideLength}", "Animation");
+            DevGUI.Label($"Reaching: {betweenStep} | Passing: {!betweenStep}", "Animation");
+            DevGUI.Label($"Left: {!stepRight} | Right: {stepRight}", "Animation");
+
         }
 
         public Vector3 GetFacing()
@@ -92,7 +97,7 @@ namespace Rosen
             var velocityRot = Quaternion.AngleAxis(Mathf.Clamp(velocityAngle, -velocityTurnMaxDelta, velocityTurnMaxDelta), Vector3.up);
             model.localRotation *= velocityRot;
 
-            DevGUI.Label($"FaceVelocityRot: {velocityRot.eulerAngles} ({velocityAngle})", "Animation");
+            DevGUI.Label($"FaceVelocityRot: {velocityAngle}", "Animation");
         }
 
         private void AccelerationTilt(Vector3 horizontalAccel, Vector3 accelRotAxis)
@@ -106,7 +111,7 @@ namespace Rosen
             var rotatedCOMDelta = tilter.up * (COM.position - tilter.position).magnitude;
             tilter.position += (COM.position - tilter.position) - rotatedCOMDelta;
 
-            DevGUI.Label($"AccelTiltRot: {accelTiltRot.eulerAngles} ({horizontalAccel.magnitude * accelTiltMult})", "Animation");
+            DevGUI.Label($"AccelTiltRot: {horizontalAccel.magnitude * accelTiltMult}", "Animation");
         }
     }
 }

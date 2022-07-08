@@ -28,6 +28,7 @@ namespace Rosen
         { 
             DevGUI.Label($"Velocity: {rb.velocity} ({rb.velocity.magnitude})", "Movement");
             DevGUI.Label($"Acceleration: {HorizontalAcceleration()} ({HorizontalAcceleration().magnitude})", "Movement");
+            DevGUI.Label($"Walking: {Input.GetKey(KeyCode.LeftShift)}", "Movement");
         }
 
         private void FixedUpdate()

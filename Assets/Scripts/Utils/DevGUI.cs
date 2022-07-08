@@ -29,7 +29,11 @@ namespace Utils
         }
 
         private const string NoContext = "NO_CONTEXT";
+        private const float TimeUntilResize = 10f;
+
         private List<DevLabel> devLabels = new List<DevLabel>();
+        private float minWidth = 0f;
+        private float resizeTimer = 0f;
 
         private void OnEnable() => StartCoroutine(ClearList());
         private void OnDisable() => StopAllCoroutines();
@@ -74,7 +78,14 @@ namespace Utils
             string currentContext = NoContext;
             devLabels.Sort(CompareByContext);
 
-            GUILayout.BeginVertical("box");
+            if(resizeTimer >= TimeUntilResize)
+            {
+                minWidth = 0f;
+                resizeTimer = 0f;
+                //Debug.Log("resized");
+            }
+
+            GUILayout.BeginVertical("box", GUILayout.MinWidth(minWidth));
 
             for (int i = 0; i < devLabels.Count; i++)
             {
@@ -94,6 +105,13 @@ namespace Utils
             }
 
             GUILayout.EndVertical();
+
+            var rWidth = GUILayoutUtility.GetLastRect().width;
+            if (rWidth > minWidth)
+                minWidth = rWidth;
+            else
+                resizeTimer += Time.deltaTime;
+
         }
     }
 }
