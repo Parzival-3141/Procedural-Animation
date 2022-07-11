@@ -1593,7 +1593,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.278781, y: 1}
+    m_SensorSize: {x: 1.6727468, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2030,10 +2030,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTarget: {fileID: 409717781}
-  acceleration: 2
-  deceleration: 3
+  acceleration: 1.5
+  deceleration: 2
   turningAccel: 7
-  maxSpeed: 8
+  maxSpeed: 8.75
 --- !u!114 &530539694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2055,13 +2055,7 @@ MonoBehaviour:
   accelTiltSpeed: 10
   wheel: {fileID: 858273652}
   animancer: {fileID: 1329953926}
-  idle: {fileID: 2253837648460500866, guid: c50600a57f278e64ca7984395a0639f4, type: 3}
-  runReach: {fileID: 11400000, guid: 7c2f157fd7150be478d2864e3ebdb0d0, type: 2}
-  runPass: {fileID: 11400000, guid: 33485a8993eb0f747afc68a6a658511d, type: 2}
-  walkReach: {fileID: 11400000, guid: 617876b64028d8a4e904f8c045d8f1ed, type: 2}
-  walkPass: {fileID: 11400000, guid: c6580bf62f0d544498713b8ce64e6151, type: 2}
-  runStrideLength: 2.1
-  walkStrideLength: 0.7
+  animData: {fileID: 11400000, guid: 6b330d7a5463ed9409e600661ddeac2f, type: 2}
 --- !u!1 &566178236
 GameObject:
   m_ObjectHideFlags: 0
@@ -2537,7 +2531,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23928
+  m_Name: pb_Mesh27338
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3303,7 +3297,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24016
+  m_Name: pb_Mesh27442
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3498,7 +3492,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23956
+  m_Name: pb_Mesh27366
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4052,7 +4046,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23980
+  m_Name: pb_Mesh27388
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4396,7 +4390,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23886
+  m_Name: pb_Mesh27302
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

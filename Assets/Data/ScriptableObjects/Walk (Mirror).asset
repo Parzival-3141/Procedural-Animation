@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a472a4806da7f9147a4a5cd7eee170df, type: 3}
+  m_Name: Walk (Mirror)
+  m_EditorClassIdentifier: 
+  _Transition:
+    rid: 776121328703111180
+  references:
+    version: 2
+    RefIds:
+    - rid: 776121328703111180
+      type: {class: LinearMixerTransition, ns: Animancer, asm: Animancer}
+      data:
+        _FadeDuration: 0.25
+        _Events:
+          _NormalizedTimes: []
+          _Callbacks: []
+          _Names: []
+        _Speed: 1
+        _Animations:
+        - {fileID: 5078884584914498394, guid: c50600a57f278e64ca7984395a0639f4, type: 3}
+        - {fileID: -176279001232075424, guid: c50600a57f278e64ca7984395a0639f4, type: 3}
+        _Speeds: []
+        _SynchronizeChildren: 
+        _Thresholds:
+        - 0
+        - 1
+        _DefaultParameter: 0
+        _ExtrapolateSpeed: 1

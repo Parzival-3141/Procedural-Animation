@@ -18,12 +18,13 @@ namespace Rosen
         [Header("Movement Animation")]
         public SurveyorWheel wheel;
         public AnimancerComponent animancer;
-        public AnimationClip idle;
-        public MirroredClip runReach, runPass;
-        public MirroredClip walkReach, walkPass;
+        public MovementAnimations animData;
+        //public AnimationClip idle;
+        //public MirroredClip runReach, runPass;
+        //public MirroredClip walkReach, walkPass;
 
-        public float runStrideLength = 2.1f;    
-        public float walkStrideLength = 0.7f;
+        //public float runStrideLength = 2.1f;    
+        //public float walkStrideLength = 0.7f;
 
 
         private Vector3 lastPos;
@@ -50,30 +51,26 @@ namespace Rosen
             distMoved.y = 0f;
             groundCovered += distMoved.magnitude;
 
-            var b = horizontalVelocity.magnitude >= pMovement.maxSpeed * .5f;
-            var strideLength = b ? runStrideLength : walkStrideLength;
-            var reach = b ? runReach : walkReach;
-            var pass = b ? runPass : walkPass;
+            float velocityInterp = horizontalVelocity.magnitude / pMovement.maxSpeed;
+            float strideLength = Mathf.Lerp(animData.walkStrideLength, animData.runStrideLength, velocityInterp);
 
-            if(groundCovered >= strideLength / 2f)
+            animancer.Play(animData.Transition);
+            animData.State.Parameter = velocityInterp;
+
+            if (groundCovered >= strideLength / 2f)
             {
-                if (betweenStep)
-                {
-                    animancer.Play(reach.GetClip(stepRight));
-                    betweenStep = false;
-                }
-                else
-                {
-                    animancer.Play(pass.GetClip(stepRight));
-                    betweenStep = true;
-                    stepRight = !stepRight;
-                }
+                animData.SetPassReach(betweenStep);
+                animData.SetMirror(stepRight);
 
+                if(!betweenStep)
+                    stepRight = !stepRight;
+
+                betweenStep   = !betweenStep;
                 groundCovered = 0f;
             }
 
             wheel.StrideLength = strideLength;
-            wheel.Rotate(wheel.AngleFromDistanceTravelled(distMoved.magnitude));
+            wheel.RotateDistance(distMoved.magnitude);
 
             lastPos = transform.position;
 

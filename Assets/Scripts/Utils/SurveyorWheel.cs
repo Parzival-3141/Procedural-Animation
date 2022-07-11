@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using Animancer.Units;
 
 public class SurveyorWheel : MonoBehaviour
 {
     //  stride = distance btwn stepN and stepN + 2
-    //  step = distance between footsteps
+    //  step = distance between footsteps (along walking normal)
     public float StrideLength { get; set; } = 2.1f;
 
     //  Circumference == distance per revolution
@@ -24,6 +21,8 @@ public class SurveyorWheel : MonoBehaviour
         wheelCenter.RotateAround(wheelCenter.right, angle * Mathf.Deg2Rad / 2f);
 #pragma warning restore CS0618 // Type or member is obsolete
     }
+
+    public void RotateDistance(float distance) => Rotate(AngleFromDistanceTravelled(distance));
 
     public float DistanceTravelled(float angle)
     {
